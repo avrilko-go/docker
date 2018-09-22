@@ -1,0 +1,12 @@
+server
+{
+	listen  80;
+	server_name  test.test;
+	location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_param  SCRIPT_FILENAME  /web/test$fastcgi_script_name;
+        fastcgi_pass 127.0.0.1:9000;
+    }
+	root   /web/test;
+	index  index.php;
+}
