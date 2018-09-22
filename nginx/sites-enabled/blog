@@ -1,0 +1,17 @@
+server
+{
+	listen  80;
+	server_name  laravel.test;
+
+	location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+	location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_param  SCRIPT_FILENAME  /web/blog$fastcgi_script_name;
+        fastcgi_pass 127.0.0.1:9000;
+    }
+	root   /web/blog;
+	index  index.php;
+}
